@@ -15,15 +15,13 @@ import MainNavigation from "./shared/components/Navigation/MainNavigation";
 import { AuthContext } from "./shared/context/auth-context";
 import { useAuth } from "./shared/hooks/auth-hook";
 import LoadingSpinner from "./shared/components/UIElements/LoadingSpinner";
+import LandingPage from "./shared/components/UIElements/LandingPag";
 
 const User = React.lazy(() => import("./user/pages/Users"));
 const NewPlace = React.lazy(() => import("./places/pages/NewPlace"));
 const UserPlaces = React.lazy(() => import("./places/pages/UserPlaces"));
 const UpdatePlace = React.lazy(() => import("./places/pages/UpdatePlace"));
 const Auth = React.lazy(() => import("./user/pages/Auth"));
-const LandingPage = React.lazy(() =>
-    import("./shared/components/UIElements/LandingPage")
-);
 
 const App = () => {
     const { token, login, logout, userId } = useAuth();
