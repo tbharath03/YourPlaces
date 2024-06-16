@@ -21,6 +21,9 @@ const NewPlace = React.lazy(() => import("./places/pages/NewPlace"));
 const UserPlaces = React.lazy(() => import("./places/pages/UserPlaces"));
 const UpdatePlace = React.lazy(() => import("./places/pages/UpdatePlace"));
 const Auth = React.lazy(() => import("./user/pages/Auth"));
+const LandingPage = React.lazy(() =>
+    import("./shared/components/UIElements/LandingPage")
+);
 
 const App = () => {
     const { token, login, logout, userId } = useAuth();
@@ -31,6 +34,9 @@ const App = () => {
         routes = (
             <Switch>
                 <Route path="/" exact>
+                    <LandingPage />
+                </Route>
+                <Route path="/users" exact>
                     <User />
                 </Route>
                 <Route path="/:userId/places" exact>
@@ -44,13 +50,16 @@ const App = () => {
                 <Route path="/places/:placeId">
                     <UpdatePlace />
                 </Route>
-                <Redirect to="/" />
+                <Redirect to="/users" />
             </Switch>
         );
     } else {
         routes = (
             <Switch>
                 <Route path="/" exact>
+                    <LandingPage />
+                </Route>
+                <Route path="/users" exact>
                     <User />
                 </Route>
                 <Route path="/:userId/places" exact>
