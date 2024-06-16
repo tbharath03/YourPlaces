@@ -1,0 +1,29 @@
+.landingPageContainer {
+    color: white;
+    margin: 100px 350px 350px;
+    background-image: linear-gradient(#ffffff18,#0000009c), url('./nature.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    
+}
+
+.header1 {
+    font-size: 26px;
+    padding: 10px;
+    text-shadow: 1px 1px 2px black;
+}
+
+.header2 {
+    font-size: 22px;
+    padding: 10px;
+}
+
+.header3 {
+    font-size: 16px;
+    padding: 10px;
+}
+
+.landingPage-btns{
+    padding: 10px;
+}
