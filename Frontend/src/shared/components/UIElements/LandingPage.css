@@ -1,6 +1,6 @@
 .landingPageContainer {
     color: white;
-    margin: 100px 350px 350px;
+    margin: 100px;
     background-image: linear-gradient(#ffffff18,#0000009c), url('./nature.png');
     background-repeat: no-repeat;
     background-size: cover;
