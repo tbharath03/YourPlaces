@@ -67,7 +67,8 @@ const createPlace = async (req, res, next) => {
     let coordinates;
     try {
         coordinates = await getCoordsForAddress(address);
-    } catch (err) {
+        console.log(coordinates);
+    } catch (error) {
         return next(error);
     }
 
@@ -84,6 +85,7 @@ const createPlace = async (req, res, next) => {
 
     try {
         user = await User.findById(req.userData.userId);
+        console.log(user);
     } catch (err) {
         return next(
             new HttpError("Creating place failed,please try again.", 500)
