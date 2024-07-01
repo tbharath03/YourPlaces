@@ -69,7 +69,7 @@ const createPlace = async (req, res, next) => {
         coordinates = await getCoordsForAddress(address);
         console.log(coordinates);
     } catch (error) {
-        return next(error);
+        return next(new HttpError("Unable to get Coordinates",500));
     }
 
     const createdPlace = new Place({
