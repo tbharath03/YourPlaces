@@ -36,18 +36,6 @@ const UpdatePlace = () => {
                 value: "",
                 isValid: false,
             },
-            address: {
-                value: "",
-                isValid: false,
-            },
-            coordinate_lat: {
-                value: "",
-                isValid: false,
-            },
-            coordinate_lng: {
-                value: "",
-                isValid: false,
-            },
         },
         false
     );
@@ -69,18 +57,6 @@ const UpdatePlace = () => {
                             value: responeData.place.description,
                             isValid: true,
                         },
-                        address: {
-                            value: responeData.place.address,
-                            isValid: true,
-                        },
-                        coordinate_lat: {
-                            value: responeData.place.location.lat,
-                            isValid: true,
-                        },
-                        coordinate_lng: {
-                            value: responeData.place.location.lng,
-                            isValid: true,
-                        },
                     },
                     true
                 );
@@ -99,9 +75,6 @@ const UpdatePlace = () => {
                 JSON.stringify({
                     title: formState.inputs.title.value,
                     description: formState.inputs.description.value,
-                    address: formState.inputs.address.value,
-                    coordinate_lat: formState.inputs.coordinate_lat.value,
-                    coordinate_lng: formState.inputs.coordinate_lng.value,
                 }),
                 {
                     "Content-Type": "application/json",
@@ -157,39 +130,6 @@ const UpdatePlace = () => {
                         errorText="Please enter a valid description(atleat 5 characters)!"
                         onInput={inputHandler}
                         initialValue={identifiedPlace.description}
-                        initialValid={true}
-                    />
-                    <Input
-                        id="address"
-                        element="input"
-                        type="text"
-                        label="Address"
-                        validators={[VALIDATOR_REQUIRE()]}
-                        errorText="Please enter a valid address!"
-                        onInput={inputHandler}
-                        initialValue={identifiedPlace.address}
-                        initialValid={true}
-                    />
-                    <Input
-                        id="coordinate_lat"
-                        element="input"
-                        type="text"
-                        label="latitude"
-                        validators={[VALIDATOR_REQUIRE()]}
-                        errorText="Please enter a valid latitude!"
-                        onInput={inputHandler}
-                        initialValue={identifiedPlace.location.lat}
-                        initialValid={true}
-                    />
-                    <Input
-                        id="coordinate_lng"
-                        element="input"
-                        type="text"
-                        label="longitude"
-                        validators={[VALIDATOR_REQUIRE()]}
-                        errorText="Please enter a valid longitude!"
-                        onInput={inputHandler}
-                        initialValue={identifiedPlace.location.lng}
                         initialValid={true}
                     />
                     <Button type="submit" disabled={!formState.isValid}>
