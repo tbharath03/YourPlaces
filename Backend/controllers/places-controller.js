@@ -68,7 +68,7 @@ const createPlace = async (req, res, next) => {
     try {
         coordinates = await getCoordsForAddress(address);
     } catch (err) {
-        return next(new HttpError("", 500));
+        return next(error);
     }
 
     const createdPlace = new Place({
