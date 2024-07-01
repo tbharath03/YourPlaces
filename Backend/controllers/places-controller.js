@@ -4,6 +4,7 @@ const { validationResult } = require("express-validator");
 const Place = require("../models/place");
 const User = require("../models/user");
 const mongoose = require("mongoose");
+const getCoordsForAddress = require("../util/location");
 const fs = require("fs");
 
 const getPlaceById = async (req, res, next) => {
@@ -61,17 +62,20 @@ const createPlace = async (req, res, next) => {
             new HttpError("Invalid inputs passed, please check your data.", 422)
         );
     }
-    const { title, description, coordinate_lat, coordinate_lng, address } =
-        req.body;
+    const { title, description, address } = req.body;
+
+    let coordinates;
+    try {
+        coordinates = await getCoordsForAddress(address);
+    } catch (err) {
+        return next(new HttpError("", 500));
+    }
 
     const createdPlace = new Place({
         title,
         description,
+        location: coordinates,
         address,
-        location: {
-            lat: coordinate_lat,
-            lng: coordinate_lng,
-        },
         image: req.file.path,
         creator: req.userData.userId,
     });
@@ -115,8 +119,7 @@ const updatePlaceById = async (req, res, next) => {
             new HttpError("Invalid inputs passed, please check your data.", 422)
         );
     }
-    const { title, description, address, coordinate_lat, coordinate_lng } =
-        req.body;
+    const { title, description } = req.body;
     const placeId = req.params.pid;
 
     let place;
@@ -136,9 +139,6 @@ const updatePlaceById = async (req, res, next) => {
 
     place.title = title;
     place.description = description;
-    place.address = address;
-    place.location.lat = coordinate_lat;
-    place.location.lng = coordinate_lng;
 
     try {
         place.save();
