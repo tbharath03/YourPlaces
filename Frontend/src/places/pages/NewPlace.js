@@ -32,14 +32,6 @@ const NewPlace = () => {
                 value: "",
                 isValid: false,
             },
-            coordinate_lat: {
-                value: "",
-                isValid: false,
-            },
-            coordinate_lng: {
-                value: "",
-                isValid: false,
-            },
             image: {
                 value: null,
                 isValid: false,
@@ -57,14 +49,6 @@ const NewPlace = () => {
             formData.append("title", formState.inputs.title.value);
             formData.append("description", formState.inputs.description.value);
             formData.append("address", formState.inputs.address.value);
-            formData.append(
-                "coordinate_lat",
-                formState.inputs.coordinate_lat.value
-            );
-            formData.append(
-                "coordinate_lng",
-                formState.inputs.coordinate_lng.value
-            );
             formData.append("image", formState.inputs.image.value);
             await sendRequest(
                 process.env.REACT_APP_BACKEND_URL + "/places",
@@ -104,22 +88,6 @@ const NewPlace = () => {
                     label="Address"
                     validators={[VALIDATOR_REQUIRE()]}
                     errorText="Please enter a valid address!"
-                    onInput={inputHandler}
-                />
-                <Input
-                    id="coordinate_lat"
-                    element="input"
-                    label="latitue"
-                    validators={[VALIDATOR_REQUIRE()]}
-                    errorText="Please enter a valid latitude!"
-                    onInput={inputHandler}
-                />
-                <Input
-                    id="coordinate_lng"
-                    element="input"
-                    label="longitude"
-                    validators={[VALIDATOR_REQUIRE()]}
-                    errorText="Please enter a valid longitude!"
                     onInput={inputHandler}
                 />
                 <ImageUpload
